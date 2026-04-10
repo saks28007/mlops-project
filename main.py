@@ -6,11 +6,11 @@ import logging
 app = FastAPI()
 
 # setup logging
-logging.basicConfig(level=logging.INFO) 
+logging(level=logging.INFO) 
             
 # API KEY (you can change this)
 API_KEY = "mysecretkey"
-
+     
 # load trained model
 try:
     with open("model.pkl", "rb") as f:
@@ -22,9 +22,8 @@ except Exception as e:
 
 # home route 
 @app.get("/")
-def home():
+def home():                            
     return {"message": "ML API is running with authentication"}
-
 
 # function to verify API key
 def verify_api_key(x_api_key: str = Header(...)):
@@ -45,7 +44,7 @@ def predict(area: float, x_api_key: str = Header(...)):
 
         # input validation
         if area <= 0:
-            raise ValueError("Area must be greater than 0")
+            raise ValueError("Area must be greater")                                                                                       than 0")
 
         # prediction
         prediction = model.predict([[area]])
